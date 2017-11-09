@@ -189,37 +189,38 @@ class Autoencoder(object):
 
 
 
+if __name__ == '__main__':
 
 
-x_train = (numpy.load('x_train.npy'))
-y_train = (numpy.load('y_train.npy'))
-x_valid = (numpy.load('x_valid.npy'))
-y_valid = (numpy.load('y_valid.npy'))
-x_test = (numpy.load('x_test.npy'))
-y_test = (numpy.load('y_test.npy'))
-# store data in a dictionary
-data = {'x_train': x_train, 'y_train': y_train, 'x_valid': x_valid, 'y_valid': y_valid, 'x_test': x_test,
-        'y_valid': y_valid}
+    x_train = (numpy.load('x_train.npy'))
+    y_train = (numpy.load('y_train.npy'))
+    x_valid = (numpy.load('x_valid.npy'))
+    y_valid = (numpy.load('y_valid.npy'))
+    x_test = (numpy.load('x_test.npy'))
+    y_test = (numpy.load('y_test.npy'))
+    # store data in a dictionary
+    data = {'x_train': x_train, 'y_train': y_train, 'x_valid': x_valid, 'y_valid': y_valid, 'x_test': x_test,
+            'y_valid': y_valid}
 
-##########SET HYPERPARAMETERS AND NET CONFIGURATION#######
-epochs = 100
-untied = False
-n_hidden = 100
-batch_size = 50
-dropout_rate = 0.1
-########################################################
+    ##########SET HYPERPARAMETERS AND NET CONFIGURATION#######
+    epochs = 100
+    untied = False
+    n_hidden = 100
+    batch_size = 50
+    dropout_rate = 0.1
+    ########################################################
 
-ae = Autoencoder(n_hidden=n_hidden, noise=0, untied=untied)
-try:
-    loss_tracker = ae.train(x_train, epochs=epochs, batch_size=batch_size, dropout_rate=dropout_rate)
-except KeyboardInterrupt:
-    exit()
-    pass
+    ae = Autoencoder(n_hidden=n_hidden, noise=0, untied=untied)
+    try:
+        loss_tracker = ae.train(x_train, epochs=epochs, batch_size=batch_size, dropout_rate=dropout_rate)
+    except KeyboardInterrupt:
+        exit()
+        pass
 
 
-path = '/home/max/PyCharm/PycharmProjects/10-707/hw2/figures/AE/'
-ae.visualize_weights_and_plot(path, loss_tracker, save_to_file=False)
-plt.show()
+    path = '/home/max/PyCharm/PycharmProjects/10-707/hw2/figures/AE/'
+    ae.visualize_weights_and_plot(path, loss_tracker, save_to_file=False)
+    plt.show()
 
 
 
